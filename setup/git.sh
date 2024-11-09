@@ -33,7 +33,7 @@ blog_sync() {
       if [ "$USE_SUBMODULES" = true ]; then
         clone_submodules
       else
-        #blog_resources_sync
+        blog_resources_sync
         blog_fe_sync
 
         blog_admin_sync
@@ -115,5 +115,5 @@ blog_api_package_sync() {
 }
 
 blog_resources_sync() {
-  repo_sync_template 'blog-resource' 'blog-resource' 'git@github.com:cslant-community/blog-resource.git'
+  repo_sync_template 'blog-resource' '' 'git@github.com:cslant-community/blog-resource.git'
 }
