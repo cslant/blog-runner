@@ -36,7 +36,7 @@ case "$1" in
   all | a)
     blog_sync all
 #    build_fe install
-    build_api install
+    build_admin install
 #    worker
     ;;
 

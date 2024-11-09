@@ -95,7 +95,7 @@ repo_sync_template() {
 }
 
 blog_fe_sync() {
-  repo_sync_template 'blog' 'blog-fe'
+  repo_sync_template 'blog-fe'
 }
 
 blog_admin_sync() {

@@ -9,7 +9,7 @@
 ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
 ```
 
-This repo is to set up the runner for updating the homepage at https://cslant.com/blog
+This repo is to set up the runner for updating the blog at https://cslant.com/blog
 
 We can use this runner to update the Blog automatically with CI/CD pipelines.
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 build_fe() {
-  echo '⚙ Building home...'
+  echo '⚙ Building blog...'
 
   BUILD_TYPE="$1"
 
@@ -83,8 +83,8 @@ node_runner() {
 
 # ========================================
 
-build_api() {
-  echo '⚙ Building home API (Laravel)...'
+build_admin() {
+  echo '⚙ Building blog API (Laravel)...'
 
   if [ "$1" == "install" ]; then
     COMPOSER_COMMAND="install"
@@ -107,7 +107,7 @@ build_api() {
 }
 
 blog_resource_env() {
-  echo '🔧 Setting up home resource environment...'
+  echo '🔧 Setting up blog resource environment...'
 
   cd "$BLOG_FE_DIR" || exit
 
