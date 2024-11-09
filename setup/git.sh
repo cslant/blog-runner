@@ -71,10 +71,11 @@ repo_sync_template() {
   echo "» Syncing $REPO_NAME repository..."
 
   if [ -n "$REPO_PATH" ]; then
-    cd "$REPO_PATH" || exit
+    ATTACH_DIR="$REPO_PATH"
   else
-    cd "$BLOG_DIR" || exit
+    ATTACH_DIR="$BLOG_DIR"
   fi
+  cd "$ATTACH_DIR" || exit
 
   if [ -z "$(ls -A "$REPO_DIR")" ]; then
     echo "  ∟ Cloning $REPO_NAME repository..."
@@ -86,7 +87,7 @@ repo_sync_template() {
     fi
   else
     echo "  ∟ Pulling $REPO_NAME repository..."
-    cd "$BLOG_DIR/$REPO_DIR" || exit
+    cd "$ATTACH_DIR/$REPO_DIR" || exit
 
     git checkout main -f
     git pull
