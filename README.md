@@ -1,17 +1,17 @@
-# CSlant Home Runner
+# CSlant Blog Runner
 
 ```text
-██╗  ██╗ ██████╗ ███╗   ███╗███████╗    ██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗███████╗██████╗ 
-██║  ██║██╔═══██╗████╗ ████║██╔════╝    ██╔══██╗██║   ██║████╗  ██║████╗  ██║██╔════╝██╔══██╗
-███████║██║   ██║██╔████╔██║█████╗      ██████╔╝██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
-██╔══██║██║   ██║██║╚██╔╝██║██╔══╝      ██╔══██╗██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗
-██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗    ██║  ██║╚██████╔╝██║ ╚████║██║ ╚████║███████╗██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+██████╗ ██╗      ██████╗  ██████╗     ██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗███████╗██████╗ 
+██╔══██╗██║     ██╔═══██╗██╔════╝     ██╔══██╗██║   ██║████╗  ██║████╗  ██║██╔════╝██╔══██╗
+██████╔╝██║     ██║   ██║██║  ███╗    ██████╔╝██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
+██╔══██╗██║     ██║   ██║██║   ██║    ██╔══██╗██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗
+██████╔╝███████╗╚██████╔╝╚██████╔╝    ██║  ██║╚██████╔╝██║ ╚████║██║ ╚████║███████╗██║  ██║
+╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
 ```
 
-This repo is to set up the runner for updating the homepage at https://cslant.com
+This repo is to set up the runner for updating the homepage at https://cslant.com/blog
 
-We can use this runner to update the Home automatically with CI/CD pipelines.
+We can use this runner to update the Blog automatically with CI/CD pipelines.
 
 ## Installation
 
@@ -27,12 +27,12 @@ In the `.env` file, update the values to match your environment.
 # .env
 
 #SOURCE_DIR=~/source
-SOURCE_DIR=/home/user/cslant.com/home
+SOURCE_DIR=/home/user/cslant.com/blog
 
 GIT_SSH_URL=git@github.com:cslant
 
 # The name of the runner
-WORKER_NAME="CSlant Home"
+WORKER_NAME="CSlant Blog"
 
 # add the env to choose "npm" or "yarn" as the installer
 INSTALLER=yarn
@@ -63,6 +63,6 @@ The runner has the following commands:
 | Command        | Description                  |
 |----------------|------------------------------|
 | `help`, `tips` | Shows the help message       |
-| `build`, `b`   | Builds the Home              |
+| `build`, `b`   | Builds the Blog              |
 | `worker`, `w`  | Create or restart the worker |
 | `all`, `a`     | Runs all the commands        |

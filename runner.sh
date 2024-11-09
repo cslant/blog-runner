@@ -21,11 +21,11 @@ case "$1" in
     usage
     ;;
 
-  home_sync)
-    home_sync "$2"
+  blog_sync)
+    blog_sync "$2"
     ;;
 
-  build | build_home | b)
+  build | build_blog | b)
     build_fe "${2:-install}"
     ;;
 
@@ -34,10 +34,10 @@ case "$1" in
     ;;
 
   all | a)
-    home_sync all
-    build_fe install
+    blog_sync all
+#    build_fe install
     build_api install
-    worker
+#    worker
     ;;
 
   *)

@@ -5,18 +5,18 @@ build_fe() {
 
   BUILD_TYPE="$1"
 
-  cd "$HOME_FE_DIR" || exit
+  cd "$BLOG_FE_DIR" || exit
 
-  if [ ! -f "$HOME_FE_DIR/.env" ]; then
+  if [ ! -f "$BLOG_FE_DIR/.env" ]; then
     echo '  ∟ .env file missing, copying from .env.example...'
-    cp "$HOME_FE_DIR/.env.example" "$HOME_FE_DIR/.env"
+    cp "$BLOG_FE_DIR/.env.example" "$BLOG_FE_DIR/.env"
   fi
 
-  home_resource_env
+  blog_resource_env
 
   if ! command -v nvm &> /dev/null; then
     # shellcheck disable=SC2155
-    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    export NVM_DIR="$([ -z "${XDG_CONFIG_BLOG-}" ] && printf %s "${BLOG}/.nvm" || printf %s "${XDG_CONFIG_BLOG}/nvm")"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   fi
   nvm use "$NODE_VERSION"
@@ -26,7 +26,7 @@ build_fe() {
     npm install -g yarn
   fi
 
-  if [ ! -d "$HOME_FE_DIR/node_modules" ] || [ "$BUILD_TYPE" = "install" ]; then
+  if [ ! -d "$BLOG_FE_DIR/node_modules" ] || [ "$BUILD_TYPE" = "install" ]; then
     echo '  ∟ Installing dependencies...'
     if [ "$INSTALLER" = "yarn" ]; then
       yarn install
@@ -54,7 +54,7 @@ build_fe() {
 worker() {
   echo '📽 Starting worker...'
 
-  cd "$HOME_FE_DIR" || exit
+  cd "$BLOG_FE_DIR" || exit
 
   if pm2 show "$WORKER_NAME" > /dev/null; then
     echo "  ∟ Restarting $WORKER_NAME..."
@@ -71,7 +71,7 @@ worker() {
 node_runner() {
   echo '🏃‍♂️ Running node...'
 
-  cd "$HOME_FE_DIR" || exit
+  cd "$BLOG_FE_DIR" || exit
 
   if [ "$INSTALLER" = "yarn" ]; then
     yarn "$@"
@@ -92,11 +92,11 @@ build_api() {
     COMPOSER_COMMAND="update"
   fi
 
-  cd "$HOME_API_DIR" || exit
+  cd "$BLOG_ADMIN_DIR" || exit
 
-  if [ ! -f "$HOME_API_DIR/.env" ]; then
+  if [ ! -f "$BLOG_ADMIN_DIR/.env" ]; then
     echo '  ∟ .env file missing, copying from .env.example...'
-    cp "$HOME_API_DIR/.env.example" "$HOME_API_DIR/.env"
+    cp "$BLOG_ADMIN_DIR/.env.example" "$BLOG_ADMIN_DIR/.env"
     composer $COMPOSER_COMMAND
     php artisan key:generate
   else
@@ -106,17 +106,17 @@ build_api() {
   echo ''
 }
 
-home_resource_env() {
+blog_resource_env() {
   echo '🔧 Setting up home resource environment...'
 
-  cd "$HOME_FE_DIR" || exit
+  cd "$BLOG_FE_DIR" || exit
 
-  HOME_RESOURCE_DIR="$HOME_DIR/home-resource"
+  BLOG_RESOURCE_DIR="$BLOG_DIR/blog-resource"
 
-  # check and replace "PUBLIC_DIR=/Users/tanhongit/Data/CSlant/home-resource/public" to "PUBLIC_DIR=$HOME_RESOURCE_DIR/public"
-  if [ -f "$HOME_FE_DIR/.env" ] && ! grep -q "PUBLIC_DIR=$HOME_RESOURCE_DIR/public" "$HOME_FE_DIR/.env"; then
+  # check and replace "PUBLIC_DIR=/Users/tanhongit/Data/CSlant/blog-resource/public" to "PUBLIC_DIR=$BLOG_RESOURCE_DIR/public"
+  if [ -f "$BLOG_FE_DIR/.env" ] && ! grep -q "PUBLIC_DIR=$BLOG_RESOURCE_DIR/public" "$BLOG_FE_DIR/.env"; then
     echo '  ∟ Setting up PUBLIC_DIR...'
-    awk -v HOME_RESOURCE_DIR="$HOME_RESOURCE_DIR" '/PUBLIC_DIR=/{gsub(/PUBLIC_DIR=.*/, "PUBLIC_DIR="HOME_RESOURCE_DIR"/public")}1' "$HOME_FE_DIR/.env" >"$HOME_FE_DIR/.env.tmp" && mv "$HOME_FE_DIR/.env.tmp" "$HOME_FE_DIR/.env"
+    awk -v BLOG_RESOURCE_DIR="$BLOG_RESOURCE_DIR" '/PUBLIC_DIR=/{gsub(/PUBLIC_DIR=.*/, "PUBLIC_DIR="BLOG_RESOURCE_DIR"/public")}1' "$BLOG_FE_DIR/.env" >"$BLOG_FE_DIR/.env.tmp" && mv "$BLOG_FE_DIR/.env.tmp" "$BLOG_FE_DIR/.env"
   else
     echo '  ∟ PUBLIC_DIR already set up...'
   fi

@@ -2,13 +2,13 @@
 
 welcome() {
   echo '
-██╗  ██╗ ██████╗ ███╗   ███╗███████╗    ██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗███████╗██████╗
-██║  ██║██╔═══██╗████╗ ████║██╔════╝    ██╔══██╗██║   ██║████╗  ██║████╗  ██║██╔════╝██╔══██╗
-███████║██║   ██║██╔████╔██║█████╗      ██████╔╝██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
-██╔══██║██║   ██║██║╚██╔╝██║██╔══╝      ██╔══██╗██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗
-██║  ██║╚██████╔╝██║ ╚═╝ ██║███████╗    ██║  ██║╚██████╔╝██║ ╚████║██║ ╚████║███████╗██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
-  '
+██████╗ ██╗      ██████╗  ██████╗     ██████╗ ██╗   ██╗███╗   ██╗███╗   ██╗███████╗██████╗
+██╔══██╗██║     ██╔═══██╗██╔════╝     ██╔══██╗██║   ██║████╗  ██║████╗  ██║██╔════╝██╔══██╗
+██████╔╝██║     ██║   ██║██║  ███╗    ██████╔╝██║   ██║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
+██╔══██╗██║     ██║   ██║██║   ██║    ██╔══██╗██║   ██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗
+██████╔╝███████╗╚██████╔╝╚██████╔╝    ██║  ██║╚██████╔╝██║ ╚████║██║ ╚████║███████╗██║  ██║
+╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+'
   echo ''
   echo '⚡ Welcome to the blog runner!'
   echo ''
@@ -31,9 +31,13 @@ usage() {
   echo '  all             Sync git and blog repository, build blog'
   echo ''
   echo 'Args for blog_sync:'
-  echo '  fe              Sync frontend blog repository'
-  echo '  api             Sync backend API blog repository'
-  echo '  all             Sync all blog repository'
+  echo '  resources           Sync resources blog repository'
+  echo '  fe                  Sync frontend blog repository'
+  echo '  admin               Sync backend admin blog repository'
+  echo '  private_modules     Sync private modules blog repository'
+  echo '  core_package        Sync core package blog repository'
+  echo '  api_package         Sync api package blog repository'
+  echo '  all                 Sync all blog repository'
   echo ''
   echo 'Args for build:'
   echo '  install         Install dependencies and build (default, if not set)'
