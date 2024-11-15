@@ -21,6 +21,12 @@ First, copy the `.env.example` file to `.env` and update the values.
 envsubst < .env.example > .env
 ```
 
+If you don't have `envsubst` command, you can use the following command:
+
+```bash
+cp .env.example .env
+```
+
 In the `.env` file, update the values to match your environment.
 
 ```bash
@@ -60,9 +66,10 @@ Then, you can just run the following command to start the runner.
 
 The runner has the following commands:
 
-| Command        | Description                  |
-|----------------|------------------------------|
-| `help`, `tips` | Shows the help message       |
-| `build`, `b`   | Builds the Blog              |
-| `worker`, `w`  | Create or restart the worker |
-| `all`, `a`     | Runs all the commands        |
+| Command             | Description                              |
+|---------------------|------------------------------------------|
+| `help`, `tips`      | Shows the help message                   |
+| `build`, `b`        | Builds the Blog                          |
+| `worker`, `w`       | Create or restart the worker             |
+| `sync`, `blog_sync` | Sync the Blog with the remote repository |
+| `all`, `a`          | Runs all the commands                    |

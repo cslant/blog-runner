@@ -21,7 +21,7 @@ case "$1" in
     usage
     ;;
 
-  blog_sync)
+  blog_sync | sync)
     blog_sync "$2"
     ;;
 

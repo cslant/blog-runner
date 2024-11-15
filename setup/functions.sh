@@ -84,7 +84,7 @@ node_runner() {
 # ========================================
 
 build_admin() {
-  echo '⚙ Building blog API (Laravel)...'
+  echo '⚙ Building blog ADMIN/API (Laravel)...'
 
   if [ "$1" == "install" ]; then
     COMPOSER_COMMAND="install"
@@ -96,12 +96,15 @@ build_admin() {
 
   if [ ! -f "$BLOG_ADMIN_DIR/.env" ]; then
     echo '  ∟ .env file missing, copying from .env.example...'
-    cp "$BLOG_ADMIN_DIR/.env.example" "$BLOG_ADMIN_DIR/.env"
+    cp "$BLOG_ADMIN_DIR/.env.production" "$BLOG_ADMIN_DIR/.env"
     composer $COMPOSER_COMMAND
     php artisan key:generate
   else
     composer $COMPOSER_COMMAND
   fi
+
+  echo '  ∟ Migrating database...'
+  php artisan migrate
 
   echo ''
 }
