@@ -103,8 +103,10 @@ build_admin() {
     composer $COMPOSER_COMMAND
   fi
 
-  echo '  ∟ Migrating database...'
-  php artisan migrate
+  if [ "$ENV" = "dev" ]; then
+    echo '  ∟ Migrating database...'
+    php artisan migrate
+  fi
 
   echo ''
 }
