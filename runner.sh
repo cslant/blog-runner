@@ -25,7 +25,16 @@ case "$1" in
     blog_sync "$2"
     ;;
 
+  build_fe | fe )
+    build_fe "${2:-install}"
+    ;;
+
+  build_admin | admin )
+    build_admin "${2:-install}"
+    ;;
+
   build | build_blog | b)
+    build_admin "${2:-install}"
     build_fe "${2:-install}"
     ;;
 
