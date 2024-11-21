@@ -108,6 +108,9 @@ build_admin() {
     php artisan migrate
   fi
 
+  php artisan config:cache
+  php artisan route:cache
+
   echo ''
 }
 
