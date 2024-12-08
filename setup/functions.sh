@@ -87,7 +87,7 @@ build_admin() {
   echo '⚙ Building blog ADMIN/API (Laravel)...'
 
   if [ "$1" == "install" ]; then
-    COMPOSER_COMMAND="install"
+    COMPOSER_COMMAND="install --no-dev"
   else
     COMPOSER_COMMAND="update"
   fi
@@ -111,6 +111,7 @@ build_admin() {
   php artisan config:cache
   php artisan route:cache
   php artisan optimize:clear
+  php artisan migrate --force
 
   echo ''
 }
