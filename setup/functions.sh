@@ -98,20 +98,20 @@ build_admin() {
     echo '  ∟ .env file missing, copying from .env.example...'
     cp "$BLOG_ADMIN_DIR/.env.production" "$BLOG_ADMIN_DIR/.env"
     composer $COMPOSER_COMMAND
-    php artisan key:generate
+    /usr/bin/php8.3 artisan key:generate
   else
     composer $COMPOSER_COMMAND
   fi
 
   if [ "$ENV" = "dev" ]; then
     echo '  ∟ Migrating database...'
-    php artisan migrate
+    /usr/bin/php8.3 artisan migrate
   fi
 
-  php artisan config:cache
-  php artisan route:cache
-  php artisan optimize:clear
-  php artisan migrate --force
+  /usr/bin/php8.3 artisan config:cache
+  /usr/bin/php8.3 artisan route:cache
+  /usr/bin/php8.3 artisan optimize:clear
+  /usr/bin/php8.3 artisan migrate --force
 
   echo ''
 }
