@@ -16,7 +16,7 @@ build_fe() {
 
   if ! command -v nvm &> /dev/null; then
     # shellcheck disable=SC2155
-    export NVM_DIR="$([ -z "${XDG_CONFIG_BLOG-}" ] && printf %s "${BLOG}/.nvm" || printf %s "${XDG_CONFIG_BLOG}/nvm")"
+    export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   fi
   nvm use "$NODE_VERSION"
