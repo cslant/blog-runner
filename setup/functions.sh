@@ -98,10 +98,12 @@ build_admin() {
   if [ ! -f "$BLOG_ADMIN_DIR/.env" ]; then
     echo '  ∟ .env file missing, copying from .env.example...'
     cp "$BLOG_ADMIN_DIR/.env.production" "$BLOG_ADMIN_DIR/.env"
-    composer "$COMPOSER_COMMAND"
+    # shellcheck disable=SC1091
+    composer $COMPOSER_COMMAND
     /usr/bin/php8.3 artisan key:generate
   else
-    composer "$COMPOSER_COMMAND"
+    # shellcheck disable=SC1091
+    composer $COMPOSER_COMMAND
   fi
 
   if [ "$ENV" = "dev" ]; then
