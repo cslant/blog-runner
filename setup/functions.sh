@@ -111,8 +111,8 @@ build_admin() {
     /usr/bin/php8.4 artisan migrate
   fi
 
-  /usr/bin/php8.4 artisan config:cache
-  /usr/bin/php8.4 artisan route:cache
+#   /usr/bin/php8.4 artisan config:cache
+#   /usr/bin/php8.4 artisan route:cache
   /usr/bin/php8.4 artisan optimize:clear
   /usr/bin/php8.4 artisan migrate --force
   /usr/bin/php8.4 artisan l5-swagger:generate
