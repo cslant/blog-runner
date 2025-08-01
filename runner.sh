@@ -50,7 +50,12 @@ case "$1" in
     worker
     ;;
 
+  backup_db | db_backup)
+    backup_database
+    ;;
+
   *)
+    echo "Command not found: $1"
     usage
     exit 1
     ;;

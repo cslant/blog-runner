@@ -120,6 +120,48 @@ build_admin() {
   echo ''
 }
 
+backup_database() {
+  echo '📦 Starting database backup...'
+  
+  # Load database configuration from .env file
+  if [ -f "$BLOG_ADMIN_DIR/.env" ]; then
+    echo "  ∟ Loading database configuration from $BLOG_ADMIN_DIR/.env"
+    # Source the .env file and export the variables
+    set -a
+    # shellcheck source=/dev/null
+    source "$BLOG_ADMIN_DIR/.env"
+    set +a
+  else
+    echo "❌ Error: .env file not found in $BLOG_ADMIN_DIR"
+    return 1
+  fi
+  
+  # Create databases directory if it doesn't exist
+  BACKUP_DIR="$BLOG_ADMIN_DIR/databases"
+  TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+  BACKUP_FILE="$BACKUP_DIR/backup_${TIMESTAMP}.sql"
+  
+  echo "  ∟ Creating backup directory: $BACKUP_DIR"
+  mkdir -p "$BACKUP_DIR"
+  
+  echo "  ∟ Creating database backup: $BACKUP_FILE"
+  
+  # Run the backup command using mysqldump with database credentials
+  mysqldump -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" > "$BACKUP_FILE"
+  
+  # Check if backup was successful
+  if [ $? -eq 0 ]; then
+    echo "✅ Database backup created successfully: $BACKUP_FILE"
+    
+    # Keep only the last 5 backups
+    echo "  ∟ Cleaning up old backups (keeping last 5)"
+    (cd "$BACKUP_DIR" && ls -t | grep '^backup_.*\.sql$' | tail -n +6 | xargs -I {} rm -- {})
+  else
+    echo "❌ Error creating database backup"
+    return 1
+  fi
+}
+
 blog_resource_env() {
   echo '🔧 Setting up blog resource environment...'
 
