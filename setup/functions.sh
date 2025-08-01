@@ -147,15 +147,18 @@ backup_database() {
   echo "  ∟ Creating database backup: $BACKUP_FILE"
   
   # Run the backup command using mysqldump with database credentials
-  mysqldump -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" > "$BACKUP_FILE"
-  
-  # Check if backup was successful
-  if [ $? -eq 0 ]; then
+  if mysqldump -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE" > "$BACKUP_FILE"; then
     echo "✅ Database backup created successfully: $BACKUP_FILE"
     
     # Keep only the last 5 backups
     echo "  ∟ Cleaning up old backups (keeping last 5)"
-    (cd "$BACKUP_DIR" && ls -t | grep '^backup_.*\.sql$' | tail -n +6 | xargs -I {} rm -- {})
+    # Using find with -name pattern to avoid ls | grep
+    (cd "$BACKUP_DIR" && \
+     find . -maxdepth 1 -name 'backup_*.sql' -type f -printf '%T@\t%p\n' | \
+     sort -r | \
+     cut -d$'\t' -f2- | \
+     tail -n +6 | \
+     xargs -r rm -f --)
   else
     echo "❌ Error creating database backup"
     return 1
