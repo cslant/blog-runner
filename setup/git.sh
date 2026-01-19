@@ -5,9 +5,9 @@ blog_sync() {
   echo ''
 
   case "$1" in
-    fe)
-      blog_fe_sync
-      ;;
+#     fe)
+#       blog_fe_sync
+#       ;;
 
     admin)
       blog_admin_sync
@@ -34,7 +34,7 @@ blog_sync() {
         clone_submodules
       else
         blog_resources_sync
-        blog_fe_sync
+#         blog_fe_sync
 
         blog_admin_sync
         blog_private_modules_sync
@@ -95,9 +95,9 @@ repo_sync_template() {
   echo ''
 }
 
-blog_fe_sync() {
-  repo_sync_template 'blog-fe'
-}
+# blog_fe_sync() {
+#   repo_sync_template 'blog-fe'
+# }
 
 blog_admin_sync() {
   repo_sync_template 'blog-admin'

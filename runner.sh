@@ -26,9 +26,9 @@ case "$1" in
     blog_sync "$2"
     ;;
 
-  build_fe | fe )
-    build_fe "${2:-install}"
-    ;;
+#   build_fe | fe )
+#     build_fe "${2:-install}"
+#     ;;
 
   build_admin | admin )
     build_admin "${2:-install}"
@@ -36,7 +36,7 @@ case "$1" in
 
   build | build_blog | b)
     build_admin "${2:-install}"
-    build_fe "${2:-install}"
+#     build_fe "${2:-install}"
     ;;
 
   worker | start_worker | w)
@@ -45,9 +45,9 @@ case "$1" in
 
   all | a)
     blog_sync all
-    build_fe install
+#     build_fe install # Disabled because FE is not used currently
     build_admin install
-    worker
+#     worker # Disabled because worker FE is not used currently
     ;;
 
   backup_db | db_backup)
