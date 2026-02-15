@@ -100,7 +100,7 @@ build_admin() {
     cp "$BLOG_ADMIN_DIR/.env.production" "$BLOG_ADMIN_DIR/.env"
     # shellcheck disable=SC2086
     composer $COMPOSER_COMMAND
-    /usr/bin/php8.4 artisan key:generate
+    $PHP_COMMAND artisan key:generate
   else
     # shellcheck disable=SC2086
     composer $COMPOSER_COMMAND
@@ -108,14 +108,14 @@ build_admin() {
 
   if [ "$ENV" = "dev" ]; then
     echo '  ∟ Migrating database...'
-    /usr/bin/php8.4 artisan migrate
+    $PHP_COMMAND artisan migrate
   fi
 
-#   /usr/bin/php8.4 artisan config:cache
-#   /usr/bin/php8.4 artisan route:cache
-  /usr/bin/php8.4 artisan optimize:clear
-  /usr/bin/php8.4 artisan migrate --force
-  /usr/bin/php8.4 artisan l5-swagger:generate
+#   $PHP_COMMAND artisan config:cache
+#   $PHP_COMMAND artisan route:cache
+  $PHP_COMMAND artisan optimize:clear
+  $PHP_COMMAND artisan migrate --force
+  $PHP_COMMAND artisan l5-swagger:generate
 
   echo ''
 }
