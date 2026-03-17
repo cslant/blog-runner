@@ -116,6 +116,7 @@ build_admin() {
   $PHP_COMMAND artisan optimize:clear
   $PHP_COMMAND artisan migrate --force
   $PHP_COMMAND artisan l5-swagger:generate
+  $PHP_COMMAND artisan queue:restart
 
   echo ''
 }
